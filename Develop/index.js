@@ -43,7 +43,7 @@ const questions = [
 
     {
         type: 'input',
-        message: 'Please describe your project',
+        message: 'Please describe your project:',
         name: 'description',
         validate: inputValidation
     },
@@ -106,6 +106,7 @@ function writeToFile(fileName, data) {
 
 function init() {
     inquirer.prompt(questions).then(function (answers) {
+        writeToFile(`${answers.githubRepo}-README.md`, answers);
     })
 }
 
