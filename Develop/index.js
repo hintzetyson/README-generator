@@ -1,8 +1,10 @@
+//Required installations
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown.js");
 
+
+//This validates that they have something in the field when prompted
 const inputValidation = async function(input) {
     if (input === '') {
         return "You must have text in this field"
@@ -10,7 +12,7 @@ const inputValidation = async function(input) {
 
     return true
 };
-
+//This will check that there are numbers
 const numberValidation = async function(input) {
     if (!input.match(/[0=9]/)) {
         return "This must be a number"
@@ -18,16 +20,19 @@ const numberValidation = async function(input) {
     return true
 };
 
+//List of Questions
 const questions = [
     {
         type: 'input',
-        message: 'What is your Github name?',
-        name: 'githubUsername'
+        message: 'What is your Github username?',
+        name: 'githubUsername',
+        validate: inputValidation
     },
     {
         type: 'input',
         message: 'What is the name of your Github repo?',
         name: 'githubRepo',
+        validate: inputValidation
     },
     {
         type: 'confirm',
@@ -36,17 +41,18 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Please make a short description for your project',
+        message: 'Please describe your project',
         name: 'description',
+        validate: inputValidation
     },
     {
         type: 'confirm',
-        message: 'Would like a table of contents?',
+        message: 'Would you like a table of contents?',
         name: 'table',
     },
     {
         type: 'input',
-        message: 'What command does the user need to run to install needed dependencies?',
+        message: 'What command does the user need to run to install dependencies?',
         name: 'install',
         default: 'npm i',
     },
@@ -54,10 +60,11 @@ const questions = [
         type: 'input',
         message: 'How does one use your product?',
         name: 'usage',
+        validate: inputValidation
     },
     {
         type: 'list',
-        message: 'What type of license would you like to use?',
+        message: 'What type of licensing do you need?',
         name: 'license',
         default: 'Use arrow key to navigate',
         choices: ['MIT', 'GPL 3.0', 'APACHE 2.0', 'BSD 3', 'No license']
@@ -67,6 +74,7 @@ const questions = [
         message: 'Would you like a list on how to contribute?',
         name: 'contributeTrueOrFalse'
     }, {
+        //This occurs if the above is true
         when: function (response) {
           return response.contributeTrueOrFalse;
         },
