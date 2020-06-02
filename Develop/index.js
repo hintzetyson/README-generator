@@ -11,6 +11,13 @@ const inputValidation = async function(input) {
     return true
 };
 
+const numberValidation = async function(input) {
+    if (!input.match(/[0=9]/)) {
+        return "This must be a number"
+    }
+    return true
+};
+
 const questions = [
     {
         type: 'input',
