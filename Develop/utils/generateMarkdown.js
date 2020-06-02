@@ -1,5 +1,8 @@
 function generateMarkdown(data) {
 
+  //running into an error with license, going to make it true by default
+  var license = true;
+
 //this takes away any spaces, the g means globally
 var markdown = `# ${data.githubRepo.replace(/-/g, " ")}\n`
 
