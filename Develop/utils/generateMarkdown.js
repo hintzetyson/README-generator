@@ -7,7 +7,7 @@ function generateMarkdown(data) {
 var markdown = `# ${data.githubRepo.replace(/-/g, " ")}\n`
 
 //Badge for the repo, this was found on the website how to get this
-markdown += `\n[![repo size](https://img.shields.io/github/repo-size/${data.githubName}/${data.githubRepo})](https://github.com/${data.githubName}/${data.githubRepo})`;
+markdown += `\n[![repo size](https://img.shields.io/github/repo-size/${data.githubUserName}/${data.githubRepo})](https://github.com/${data.githubUserName}/${data.githubRepo})`;
 
 //Shows if a license exists next to the Repo badge
 if (license) {
@@ -78,7 +78,7 @@ if (data.testsTrueorFalse) {
   markdown += `\n## Tests\n\n>To run tests, run this command:\n\n\`\`\`\n${data.testsContent}\n\`\`\`\n`;
 }
 
-markdown += `\n## Questions\n\nIf you have any questions, please open an issue or contact [${name}](https://github.com/${data.githubUserame}).\n`;
+markdown += `\n## Questions\n\nIf you have any questions, please open an issue or contact [${data.githubUserame}](https://github.com/${data.githubUsername}).\n`;
 
 
 
