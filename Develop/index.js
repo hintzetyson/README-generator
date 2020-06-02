@@ -34,11 +34,14 @@ const questions = [
         name: 'githubRepo',
         validate: inputValidation
     },
+
     {
-        type: 'confirm',
-        message: 'Would you like to use your real name on the README?',
-        name: 'realName'
+        type: 'input',
+        message: 'What is your Project Title?',
+        name: 'title',
+        validate: inputValidation
     },
+
     {
         type: 'input',
         message: 'Please describe your project',
@@ -50,6 +53,8 @@ const questions = [
         message: 'Would you like a table of contents?',
         name: 'table',
     },
+
+
     {
         type: 'input',
         message: 'What command does the user need to run to install dependencies?',
@@ -119,9 +124,10 @@ function init() {
                 inquirer.prompt([
                     {
                         type:"input",
-                        message: `What should Step ${number} say?`
+                        message: `What should Step ${number} say?`,
+                        name: `step${number}`
                     }
-                ])
+                ]).then(())
             }
         }
     })
