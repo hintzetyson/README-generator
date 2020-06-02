@@ -2,7 +2,7 @@
 const fs = require("fs");
 const axios = require("axios");
 const inquirer = require("inquirer");
-
+const generateMarkdown = require("./utils/generateMarkdown.js");
 
 //This validates that they have something in the field when prompted
 const inputValidation = async function(input) {
@@ -55,7 +55,10 @@ const questions = [
         message: 'What command does the user need to run to install dependencies?',
         name: 'install',
         default: 'npm i',
+        validate: inputValidation
+        
     },
+    
     {
         type: 'input',
         message: 'How does one use your product?',
@@ -82,14 +85,46 @@ const questions = [
         message: 'How many steps would you like to list?',
         name: 'contributeSteps',
         validate: numberValidation
-    }
+    },
+    {
+        type: 'confirm',
+        message: 'Would you like to include a Tests section?',
+        name: 'testsTrueorFalse'
+    }, {
+        when: function (response) {
+          return response.testsTrueorFalse;
+        },
+        type: 'input',
+        message: 'What command does the user need to test your program?',
+        name: 'testsContent',
+        default: 'npm test',
+        validate: fieldValidation
+    },
 ];
 
 function writeToFile(fileName, data) {
+    let generated = generateMarkdown(data);
+    fs.writeFile(fileName, generated, function() {
+        console.log(`${fileName} has been generated!`)
+    });
 }
 
 function init() {
+    inquirer.prompt(question).then(function (answers) {
+        if (answers.contributeTrueOrFalse) {
 
+            function contributeFunction() {
+                number++;
+
+                inquirer.prompt([
+                    {
+                        type:"input",
+                        message: `What should Step ${number} say?`
+                    }
+                ])
+            }
+        }
+    })
 }
 
 init();
