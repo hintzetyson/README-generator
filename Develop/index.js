@@ -3,12 +3,19 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
+const inputValidation = async function(input) {
+    if (input === '') {
+        return "You must have text in this field"
+    }
+
+    return true
+};
 
 const questions = [
     {
         type: 'input',
         message: 'What is your Github name?',
-        name: 'githubName'
+        name: 'githubUsername'
     },
     {
         type: 'input',
