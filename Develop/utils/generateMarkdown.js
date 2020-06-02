@@ -25,10 +25,29 @@ if (data.table) {
     string += '\n* [Tests](#tests)\n';
   }
 
-  
+
   string += '\n* [Questions](#questions)\n'
   string += '\n* [License](#license)\n'
 }
+
+ // Licensing switching between cases
+ switch (data.license) {
+  case 'MIT':
+    var licenseLink = 'mit-license.php';
+    break;
+  case 'GPL 3.0':
+    var licenseLink = 'GPL-3.0';
+    break;
+  case 'APACHE 2.0':
+    var licenseLink = 'Apache-2.0';
+    break;
+  case 'BSD 3':
+    var licenseLink = 'BSD-3-Clause';
+    break;
+  default:
+    license = false;
+}
+
 
   return `
 # ${data.title}
