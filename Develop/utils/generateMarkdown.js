@@ -68,18 +68,6 @@ if (license) {
 //if they wanted a contribute section
 if (data.contributeTrueOrFalse) {
   markdown += '\n## Contributing\n';
-  
-  // If the user only has one step then it will just be a bullet point.
-  if (data.contributeSteps === 1) {
-    markdown += `\n* ${data['step1']}`;
-  } 
-  
-  // Otherwise this will loop over and add the different steps
-  else {
-    for (let i = 0; i < data.contributeSteps; i++) {
-      markdown += `\n### Step ${i + 1}\n* ${data[`step${i + 1}`]}\n`
-    }
-  }
 }
 
 // If the user wants a tests section
@@ -91,8 +79,7 @@ markdown += `\n## Questions\n\nIf you have any questions, please open an issue o
 
 
 
-  return `
-`;
+  return markdown;
 }
 
 module.exports = generateMarkdown;

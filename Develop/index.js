@@ -1,6 +1,5 @@
 //Required installations
 const fs = require("fs");
-const axios = require("axios");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
@@ -79,17 +78,8 @@ const questions = [
     },
     {
         type: 'confirm',
-        message: 'Would you like a list on how to contribute?',
+        message: 'Would you like to inform someone how to contribute?',
         name: 'contributeTrueOrFalse'
-    }, {
-        //This occurs if the above is true
-        when: function (response) {
-          return response.contributeTrueOrFalse;
-        },
-        type: 'input',
-        message: 'How many steps would you like to list?',
-        name: 'contributeSteps',
-        validate: numberValidation
     },
     {
         type: 'confirm',
@@ -103,7 +93,7 @@ const questions = [
         message: 'What command does the user need to test your program?',
         name: 'testsContent',
         default: 'npm test',
-        validate: fieldValidation
+        validate: inputValidation
     },
 ];
 
@@ -115,21 +105,7 @@ function writeToFile(fileName, data) {
 }
 
 function init() {
-    inquirer.prompt(question).then(function (answers) {
-        if (answers.contributeTrueOrFalse) {
-
-            function contributeFunction() {
-                number++;
-
-                inquirer.prompt([
-                    {
-                        type:"input",
-                        message: `What should Step ${number} say?`,
-                        name: `step${number}`
-                    }
-                ]).then(())
-            }
-        }
+    inquirer.prompt(questions).then(function (answers) {
     })
 }
 
