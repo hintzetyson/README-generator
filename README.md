@@ -26,7 +26,7 @@ npm i
 
 ## Usage
 
-After running an npm install in the directory folder, run the command: node index.js then answer each question and afterwards, a README file will be generated. Here is a [video to demonstrate how it works.](https://youtu.be/eWv_DmCmVxg)
+After running an npm install in the directory folder, run the command: node index.js then answer each question and afterwards, a README file will be generated. Here is a [video to demonstrate how it works.](https://youtu.be/IutjhdS729c)
 
 ## Questions
 
